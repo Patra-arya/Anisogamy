@@ -1,4 +1,5 @@
 """Visualization tools for best-response dynamics, cobweb plots, and bifurcation diagrams."""
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -6,7 +7,7 @@ from .best_response import best_response
 from .dynamics import iterate, classify
 
 
-def plot_best_response(alpha, beta, ax=None):
+def plot_best_response(alpha, beta, ax=None, save_path=None):
     """Fig. 1 top row: R(m) against m, with the 45-degree line."""
     if ax is None:
         fig, ax = plt.subplots(figsize=(6, 5))
@@ -22,11 +23,19 @@ def plot_best_response(alpha, beta, ax=None):
     ax.set_title(f'Best Response Map ($\\alpha={alpha}$, $\\beta={beta}$)')
     ax.legend()
     ax.grid(True, alpha=0.3)
+    if save_path is not None:
+                dir_name = os.path.dirname(save_path)
+                if dir_name:
+                    os.makedirs(dir_name, exist_ok=True)
+                    
+                fig = ax.get_figure()
+                fig.savefig(save_path, dpi=300, bbox_inches='tight')
+    
 
     return ax
 
 
-def plot_cobweb(m0, alpha, beta, n=30, ax=None):
+def plot_cobweb(m0, alpha, beta, n=30, ax=None, save_path=None):
     """The staircase: vertical to the curve, horizontal to the diagonal."""
     if ax is None:
         fig, ax = plt.subplots(figsize=(6, 5))
@@ -49,11 +58,18 @@ def plot_cobweb(m0, alpha, beta, n=30, ax=None):
     ax.plot(cobweb_x, cobweb_y, 'r-', alpha=0.7, linewidth=1.2, label='Cobweb Trajectory')
     ax.scatter([m0], [m0], color='red', zorder=5, label=f'Start ($m_0={m0}$)')
     ax.legend()
+    if save_path is not None:
+            dir_name = os.path.dirname(save_path)
+            if dir_name:
+                os.makedirs(dir_name, exist_ok=True)
+                
+            fig = ax.get_figure()
+            fig.savefig(save_path, dpi=300, bbox_inches='tight')
 
     return ax
 
 
-def plot_bifurcation(alpha, betas, ax=None):
+def plot_bifurcation(alpha, betas, ax=None, save_path=None):
     """The pitchfork. Not in either paper."""
     if ax is None:
         fig, ax = plt.subplots(figsize=(7, 5))
@@ -89,5 +105,13 @@ def plot_bifurcation(alpha, betas, ax=None):
     ax.set_title(f'Bifurcation Diagram ($\\alpha={alpha}$)')
     ax.legend(loc='upper left')
     ax.grid(True, alpha=0.3)
+
+    if save_path is not None:
+        dir_name = os.path.dirname(save_path)
+        if dir_name:
+            os.makedirs(dir_name, exist_ok=True)
+            
+        fig = ax.get_figure()
+        fig.savefig(save_path, dpi=300, bbox_inches='tight')
 
     return ax
