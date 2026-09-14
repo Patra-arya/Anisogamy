@@ -13,8 +13,9 @@ def log_fitness(m_self, m_partner, alpha, beta, delta=0.0,
     m_partner = np.clip(np.asarray(m_partner, dtype=float), 1e-300, None)
     
     n_gam = -np.log(m_self)
-    gamete_surv = np.log(g(m_self, scale = alpha, delta=delta))
-    zygote_surv = np.log(f((m_self+m_partner), scale = beta, delta=2*delta))
+    with np.errstate(divide='ignore'):
+        gamete_surv = np.log(g(m_self, scale=alpha, delta=delta))
+        zygote_surv = np.log(f(m_self + m_partner, scale=beta, delta=2*delta))
 
     # M/m_self, with ln M dropped as a constant
     return n_gam + gamete_surv + zygote_surv 
