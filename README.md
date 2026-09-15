@@ -96,6 +96,9 @@ Notebook/              worked examples and figure generation
 
 -  This is a one-to-one replication of the Bulmer and Parker (2002), paper. This paper, as does Parker, Baker, and Smith (1972), assumes that all gametes find mates to form zygotes. This describes gamete-competition regime. Further reading should include Lehtonen and Kokko (2011).
 - This model also assumes two mating-types, but in nature we find three, four, and up to thousands of mating-types from a single species. Hurst and Hamilton (1992) argue a model for two mating-types (cytoplasmic genetic material conflict {Uni-parental Inheritance}), and many papers follow-up with different theories. This is a genuinely unsolved (worked-upon) question in the field.
+- *FROM Bulmer and Parker*: In unicellular organisms, one might expect β≈α, leading to isogamy. In the early stages of multicellularity, one might expect that α would stay roughly constant, but β would increase with the need to provision the embryo; when it has increased more than fourfold the scene for the evolution of anisogamy is set.
+- *FROM Bulmer and Parker*: Once gametes become dimorphic, other selective forces are involved in the subsequent specialization of micro- and
+macrogametes.
 
 ## On AI usage
 AI was used to modify and sometimes co-write code. The author takes full responsibility.
